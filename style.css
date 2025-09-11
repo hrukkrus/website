@@ -248,9 +248,16 @@ a:hover {
 }
 
 .works-category h2 {
-    font-size: 2.5em;
+    font-size: 2.2em; /* Smaller */
     padding-bottom: 15px;
     margin-bottom: 25px;
+    border-bottom-color: rgba(255, 255, 255, 0.3);
+    text-align: left;
+}
+m-color: rgba(255, 255, 255, 0.3);
+    text-align: left;
+}
+ttom: 25px;
     border-bottom-color: rgba(255, 255, 255, 0.3);
     text-align: left;
 }
