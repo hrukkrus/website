@@ -1,0 +1,256 @@
+/* --- Particle Cursor Effect --- */
+.particle {
+    position: fixed;
+    pointer-events: none;
+    background-color: #b2ebf2;
+    border-radius: 50%;
+    z-index: 9999;
+    animation: particle-anim 0.8s forwards;
+    box-shadow: 0 0 10px #b2ebf2, 0 0 20px #b2ebf2;
+}
+
+@keyframes particle-anim {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--x), var(--y)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Google Fontsからフォントをインポート - Playfair Displayを追加 */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Noto+Sans+JP:wght@300;400&display=swap');
+
+/* 気泡アニメーション用のキーフレーム */
+@keyframes bubble-rise {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+
+/* 背景の揺らぎアニメーション */
+@keyframes underwater-wave {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    line-height: 1.8;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: linear-gradient(45deg, #003973, #2c7a7b, #82c4c4, #3a7bd5);
+    background-size: 400% 400%;
+    animation: underwater-wave 15s ease infinite;
+    color: #f0f8ff;
+    overflow-x: hidden; /* 横スクロールを防止 */
+}
+
+/* 気泡のコンテナ */
+.bubbles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* 個々の気泡 */
+.bubble {
+    position: absolute;
+    bottom: -100px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    animation: bubble-rise 10s infinite ease-in;
+}
+
+.bubble:nth-child(1) { width: 20px; height: 20px; left: 10%; animation-duration: 8s; }
+.bubble:nth-child(2) { width: 25px; height: 25px; left: 20%; animation-duration: 5s; animation-delay: 1s; }
+.bubble:nth-child(3) { width: 15px; height: 15px; left: 35%; animation-duration: 9s; animation-delay: 2s; }
+.bubble:nth-child(4) { width: 30px; height: 30px; left: 50%; animation-duration: 6s; animation-delay: 3s; }
+.bubble:nth-child(5) { width: 18px; height: 18px; left: 65%; animation-duration: 10s; animation-delay: 1s; }
+.bubble:nth-child(6) { width: 22px; height: 22px; left: 80%; animation-duration: 7s; animation-delay: 0s; }
+.bubble:nth-child(7) { width: 12px; height: 12px; left: 90%; animation-duration: 12s; animation-delay: 2.5s; }
+
+
+.container {
+    max-width: 700px;
+    width: 90%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+}
+
+h1, h2 {
+    font-family: 'Playfair Display', serif; /* 見出しフォントを変更 */
+    color: #ffffff;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.5);
+    padding-bottom: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px; /* 文字間を調整 */
+}
+
+h1 {
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+    text-transform: uppercase; /* 大文字に */
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 1.3em;
+    color: #e0f7fa;
+    margin-bottom: 40px;
+    font-weight: 300;
+    letter-spacing: 1px; /* 文字間を調整 */
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+p, li {
+    font-family: 'Noto Sans JP', sans-serif; /* 本文フォントを明示 */
+    color: #f0f8ff;
+    line-height: 1.9; /* 行間を少し広げる */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background: rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #82c4c4;
+    transition: background-color 0.3s ease;
+}
+
+li:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    color: #e0f7fa;
+}
+
+a {
+    color: #96e0e0; /* 少し色を調整 */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+a:hover {
+    color: #b2ebf2;
+    text-decoration: none;
+    text-shadow: 0 0 8px #b2ebf2;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    .container {
+        padding: 20px;
+    }
+    h1 {
+        font-size: 2.2em;
+    }
+    .subtitle {
+        font-size: 1.1em;
+    }
+}
+
+/* Works Page Styles */
+.works-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.work-item {
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.work-item img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 5px;
+}
+
+.work-item p {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+.back-link:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+/* Works Category Styles */
+.works-category {
+    margin-bottom: 50px;
+}
+
+.works-category h2 {
+    font-size: 2.5em;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    border-bottom-color: rgba(255, 255, 255, 0.3);
+    text-align: left;
+}
